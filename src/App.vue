@@ -1,20 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <Home v-on:isShowFooter="isShowFooter" />
+    <GlobalFooter v-if="footer_show" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+import Home from './views/Home.vue';
+import GlobalFooter from './components/GlobalFooter/GlobalFooter.vue';
 
 @Component({
   components: {
-    HelloWorld,
+    Home,
+    GlobalFooter
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  header_show:boolean = true
+  footer_show:boolean = true
+      
+  //是否显示底部
+  isShowFooter(isShowFooter:boolean):void {
+    this.footer_show = isShowFooter;
+  }
+}
 </script>
 
 <style>
